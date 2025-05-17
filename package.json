@@ -1,0 +1,29 @@
+{
+  "name": "mcp-tools-lint",
+  "version": "0.3.0",
+  "description": "A small CLI for testing MCP server tools.",
+  "type": "module",
+  "bin": {
+    "mcp-tools-lint": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "clean": "node scripts/clean.mjs",
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test --test-concurrency=1 tests/cli.test.mjs",
+    "check": "npm run typecheck && npm test && npm run build"
+  },
+  "dependencies": {
+    "commander": "13.1.0",
+    "yaml": "2.7.1",
+    "zod": "3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.3",
+    "typescript": "5.8.3"
+  }
+}
