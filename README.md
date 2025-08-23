@@ -48,6 +48,7 @@ tests:
       text:
         contains: required
 ```
+配置文件使用 JSON，测试用例使用 YAML；`--format json` 只影响输出报告格式。
 
 运行：
 
@@ -70,6 +71,24 @@ mcp-tools-lint test --format json --output reports/result.json
 `list` 只执行握手和完整的 `tools/list` 分页，不调用 Tool。`test` 不传文件时读取 `testDir` 第一层的 `.yaml`/`.yml` 文件，传入文件时只运行指定文件。输出目录不存在时会自动创建。
 
 `lint` 读取 Tool 列表并执行基础确定性检查：工具名格式、非空描述、`inputSchema.type`、`properties` 和 `required` 引用。发现规则问题时返回 `1`，协议或配置错误返回 `2`。
+
+## 使用方式
+
+这是一个命令行工具，通过终端命令或 CI 脚本运行。它没有单独的图形界面，也没有承诺稳定的 JavaScript/TypeScript 编程 API；项目的公开入口是命令行。
+
+本地源码运行：
+
+```bash
+npm install
+npm run build
+node dist/cli.js test --config .mcp-tools-lint.json
+```
+
+安装到其他项目后，可以使用包提供的命令：
+
+```bash
+npx mcp-tools-lint test --config .mcp-tools-lint.json
+```
 
 Streamable HTTP 配置示例：
 
